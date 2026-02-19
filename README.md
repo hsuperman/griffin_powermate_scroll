@@ -2,6 +2,10 @@
 
 A native menu bar app for Griffin PowerMate on macOS with low-latency HID scrolling, live tuning controls, and persistent settings.
 
+<p align="center">
+  <img src="resources/screenshot.png" alt="PowerMateScroll menu bar panel" width="380">
+</p>
+
 ## Features
 
 - Menu bar app UI (`PowerMateScroll.app`) with glass-style controls.
