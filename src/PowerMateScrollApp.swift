@@ -813,23 +813,21 @@ private struct MenuPanelView: View {
 
     // MARK: - Header icon badge
 
-    @ViewBuilder
     private var headerIconBadge: some View {
-        if #available(macOS 26.0, *) {
-            Image(systemName: "dial.medium.fill")
-                .font(.title2)
-                .foregroundStyle(.cyan)
-                .frame(width: 34, height: 34)
-                .glassEffect(.regular.tint(.cyan.opacity(0.12)), in: .circle)
-        } else {
-            Image(systemName: "dial.medium.fill")
-                .font(.title2)
-                .foregroundStyle(.cyan)
-                .frame(width: 34, height: 34)
-                .background(.ultraThinMaterial, in: Circle())
-                .overlay(Circle().strokeBorder(.white.opacity(0.2), lineWidth: 0.5))
-        }
+        Image(nsImage: Self.appIcon)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 34, height: 34)
+            .clipShape(Circle())
     }
+
+    private static let appIcon: NSImage = {
+        if let url = Bundle.main.url(forResource: "AppIcon", withExtension: "icns"),
+           let img = NSImage(contentsOf: url) {
+            return img
+        }
+        return NSApp.applicationIconImage
+    }()
 
     // MARK: - Status dot with glow
 

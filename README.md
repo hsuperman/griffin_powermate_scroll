@@ -24,12 +24,12 @@ A native menu bar app for Griffin PowerMate on macOS with low-latency HID scroll
 
 Then grant Accessibility to:
 
-- `~/Applications/PowerMateScroll.app`
+- `/Applications/PowerMateScroll.app`
 
 If the prompt does not appear, run:
 
 ```bash
-open -na "$HOME/Applications/PowerMateScroll.app" --args --request-accessibility
+open -na "/Applications/PowerMateScroll.app" --args --request-accessibility
 ```
 
 Restart the running agent if needed:

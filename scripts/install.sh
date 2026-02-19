@@ -7,20 +7,22 @@ BIN_DIR="${HOME}/.local/bin"
 AGENT_DIR="${HOME}/Library/LaunchAgents"
 LOG_DIR="${HOME}/Library/Logs"
 BIN_PATH="${BIN_DIR}/powermate-scroll"
-APP_DIR="${HOME}/Applications/PowerMateScroll.app"
+APP_DIR="/Applications/PowerMateScroll.app"
 APP_CONTENTS="${APP_DIR}/Contents"
 APP_MACOS="${APP_CONTENTS}/MacOS"
+APP_RESOURCES="${APP_CONTENTS}/Resources"
 APP_BIN_PATH="${APP_MACOS}/powermate-scroll"
 APP_INFO_PLIST="${APP_CONTENTS}/Info.plist"
 AGENT_PATH="${AGENT_DIR}/${LABEL}.plist"
 
-mkdir -p "${BIN_DIR}" "${AGENT_DIR}" "${LOG_DIR}" "${APP_MACOS}"
+mkdir -p "${BIN_DIR}" "${AGENT_DIR}" "${LOG_DIR}" "${APP_MACOS}" "${APP_RESOURCES}"
 
 "${ROOT_DIR}/scripts/build.sh"
 cp "${ROOT_DIR}/build/powermate-scroll" "${BIN_PATH}"
 chmod +x "${BIN_PATH}"
 cp "${ROOT_DIR}/build/powermate-scroll" "${APP_BIN_PATH}"
 chmod +x "${APP_BIN_PATH}"
+cp "${ROOT_DIR}/resources/AppIcon.icns" "${APP_RESOURCES}/AppIcon.icns"
 
 cat > "${APP_INFO_PLIST}" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -43,6 +45,8 @@ cat > "${APP_INFO_PLIST}" <<EOF
   <string>powermate-scroll</string>
   <key>LSUIElement</key>
   <true/>
+  <key>CFBundleIconFile</key>
+  <string>AppIcon</string>
   <key>NSHighResolutionCapable</key>
   <true/>
 </dict>
